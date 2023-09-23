@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Widget customContainer() {
   return Container(
@@ -28,11 +29,12 @@ Widget customContainer() {
               bottomRight: Radius.circular(180),
             ),
           ),
-          child: const Center(
+          child: Center(
             child: Text(
-              'Login',
-              style: TextStyle(
-                color: Colors.black,
+              'My Task',
+              style: GoogleFonts.carterOne(
+                textStyle: const TextStyle(
+                    color: Color(0xffEAF2F2), letterSpacing: .5, fontSize: 50),
               ),
               textAlign: TextAlign.center,
             ),
@@ -52,7 +54,7 @@ Widget customContainer() {
             ),
             child: const Center(
               child: Text(
-                'Login',
+                '',
                 style: TextStyle(
                   color: Colors.black,
                 ),
