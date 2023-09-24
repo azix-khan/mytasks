@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:internee_app/Screens/home_screen.dart';
-import 'package:internee_app/Screens/login_screen.dart';
-import 'package:internee_app/Utils/custom_container.dart';
-import 'package:internee_app/Utils/round_button.dart';
+import 'package:mytasks/Screens/home_screen.dart';
+import 'package:mytasks/Screens/login_screen.dart';
+import 'package:mytasks/Utils/custom_container.dart';
+import 'package:mytasks/Utils/round_button.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -12,6 +12,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  bool? check = false;
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -24,7 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         body: Stack(
           children: <Widget>[
             // Background Container
-            customContainer(),
+            customContainer('My Task'),
             // App's Content
             Center(
               child: Padding(
@@ -139,6 +140,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 borderRadius: BorderRadius.circular(20)),
                             hintText: 'Confirm Password',
                           ),
+                        ),
+                        CheckboxListTile(
+                          //checkbox positioned at left
+                          value: check,
+                          activeColor: Colors.blue,
+                          checkColor: Colors.white,
+                          controlAffinity: ListTileControlAffinity.leading,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              check = value;
+                            });
+                          },
+                          title: const Text("I agree with Terms and Privacy"),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 0.0),
                         ),
                         const SizedBox(
                           height: 50,

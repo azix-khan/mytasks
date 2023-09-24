@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:internee_app/Screens/login_screen.dart';
+import 'package:mytasks/Screens/welcome_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,9 +14,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primaryColor: const Color(0xff78C6F2),
+        scaffoldBackgroundColor: const Color(0xff78C6F2),
         useMaterial3: true,
       ),
-      home: const LoginScreen(),
+      debugShowCheckedModeBanner: false,
+      home: const WelcomeScreen(),
     );
   }
 }

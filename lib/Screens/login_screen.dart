@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:internee_app/Screens/home_screen.dart';
-import 'package:internee_app/Screens/signup_screen.dart';
-import 'package:internee_app/Utils/custom_container.dart';
-import 'package:internee_app/Utils/round_button.dart';
+import 'package:mytasks/Screens/home_screen.dart';
+import 'package:mytasks/Screens/signup_screen.dart';
+import 'package:mytasks/Utils/custom_container.dart';
+import 'package:mytasks/Utils/round_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
         body: Stack(
           children: <Widget>[
             // Background Container
-            customContainer(),
+            customContainer('My Task'),
             // App's Content
             Center(
               child: Padding(

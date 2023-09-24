@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget customContainer() {
+Widget customContainer(String title) {
   return Container(
     child: Stack(
       children: <Widget>[
@@ -31,7 +31,7 @@ Widget customContainer() {
           ),
           child: Center(
             child: Text(
-              'My Task',
+              title, // Use the provided title here
               style: GoogleFonts.carterOne(
                 textStyle: const TextStyle(
                     color: Color(0xffEAF2F2), letterSpacing: .5, fontSize: 50),
