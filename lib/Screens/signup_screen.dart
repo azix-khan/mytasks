@@ -24,7 +24,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: Stack(
         children: <Widget>[
           // Background Container
-          customContainer('My Task'),
+          customContainer('My Task', context),
           // App's Content
           Center(
             child: Padding(

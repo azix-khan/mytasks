@@ -94,7 +94,7 @@ class HomeScreen extends StatelessWidget {
         ),
         body: Stack(
           children: <Widget>[
-            customContainer('Home'),
+            customContainer('Home', context),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Stack(
         children: <Widget>[
           // Background Container
-          customContainer('My Task'),
+          customContainer('My Task', context),
           // App's Content
           Center(
             child: Padding(

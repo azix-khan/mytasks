@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget customContainer(String title) {
+Widget customContainer(String title, BuildContext context) {
+  final screenSize = MediaQuery.of(context).size;
+  final isSmallScreen = screenSize.width < 600;
+
   return Container(
     child: Stack(
       children: <Widget>[
         Container(
           alignment: Alignment.topCenter,
           width: double.infinity,
-          decoration: const BoxDecoration(
-            color: Color(0xffC2E5FE),
+          decoration: BoxDecoration(
+            color: const Color(0xffC2E5FE),
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(80),
+              topLeft: Radius.circular(isSmallScreen ? 30 : 80),
             ),
           ),
           child: const Text(
@@ -22,19 +25,23 @@ Widget customContainer(String title) {
         Container(
           height: 200,
           width: double.infinity,
-          decoration: const BoxDecoration(
-            color: Color(0xff78C6F2),
+          decoration: BoxDecoration(
+            color: const Color(0xff78C6F2),
             borderRadius: BorderRadius.only(
-              bottomLeft: Radius.elliptical(800.20, 300.30),
-              bottomRight: Radius.circular(180),
+              bottomLeft: Radius.elliptical(isSmallScreen ? 400.20 : 800.20,
+                  isSmallScreen ? 150.30 : 300.30),
+              bottomRight: Radius.circular(isSmallScreen ? 90 : 180),
             ),
           ),
           child: Center(
             child: Text(
-              title, // Use the provided title here
+              title,
               style: GoogleFonts.carterOne(
-                textStyle: const TextStyle(
-                    color: Color(0xffEAF2F2), letterSpacing: .5, fontSize: 50),
+                textStyle: TextStyle(
+                  color: const Color(0xffEAF2F2),
+                  letterSpacing: isSmallScreen ? 0.2 : 0.5,
+                  fontSize: isSmallScreen ? 40 : 50,
+                ),
               ),
               textAlign: TextAlign.center,
             ),
@@ -45,11 +52,12 @@ Widget customContainer(String title) {
           child: Container(
             height: 200,
             width: double.infinity,
-            decoration: const BoxDecoration(
-              color: Color(0xff78C6F2),
+            decoration: BoxDecoration(
+              color: const Color(0xff78C6F2),
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(180),
-                topRight: Radius.elliptical(800.20, 300.30),
+                topLeft: Radius.circular(isSmallScreen ? 90 : 180),
+                topRight: Radius.elliptical(isSmallScreen ? 400.20 : 800.20,
+                    isSmallScreen ? 150.30 : 300.30),
               ),
             ),
             child: const Center(
