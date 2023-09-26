@@ -3,6 +3,9 @@ import 'package:mytasks/Screens/home_screen.dart';
 import 'package:mytasks/Screens/login_screen.dart';
 import 'package:mytasks/Utils/custom_container.dart';
 import 'package:mytasks/Utils/round_button.dart';
+import 'package:mytasks/provider/checkbox_provider.dart';
+import 'package:mytasks/provider/visibility_provider.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -20,6 +23,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController confirmController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final iconVisibilityProvider = Provider.of<IconVisibilityProvider>(context);
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -51,7 +55,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         decoration: InputDecoration(
                           labelText: 'User Name',
                           prefixIcon: const Icon(
-                            Icons.email,
+                            Icons.person,
                             color: Color(0xff088F8F),
                           ),
                           enabledBorder: OutlineInputBorder(
@@ -93,71 +97,108 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const SizedBox(
                         height: 20,
                       ),
-                      TextFormField(
-                        controller: passwordController,
-                        keyboardType: TextInputType.visiblePassword,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Password Required';
-                          }
-                          return null;
+                      Consumer<IconVisibilityProvider>(
+                        builder: (context, value, child) {
+                          return TextFormField(
+                            controller: passwordController,
+                            obscureText: !iconVisibilityProvider.isVisible,
+                            keyboardType: TextInputType.visiblePassword,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Password Required';
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'Password',
+                              prefixIcon: const Icon(
+                                Icons.lock,
+                                color: Color(0xff088F8F),
+                              ),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  iconVisibilityProvider.toggleVisibility();
+                                },
+                                icon: Icon(
+                                  iconVisibilityProvider.isVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
+                                color: Colors.teal,
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide:
+                                    const BorderSide(color: Color(0xff6495ED)),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              hintText: 'Password',
+                            ),
+                          );
                         },
-                        decoration: InputDecoration(
-                          labelText: 'Password',
-                          prefixIcon: const Icon(
-                            Icons.lock,
-                            color: Color(0xff088F8F),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide:
-                                  const BorderSide(color: Color(0xff6495ED))),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          hintText: 'Password',
-                        ),
                       ),
                       const SizedBox(
                         height: 20,
                       ),
-                      TextFormField(
-                        controller: confirmController,
-                        keyboardType: TextInputType.visiblePassword,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Password Required';
-                          }
-                          return null;
+                      Consumer<IconVisibilityProvider>(
+                        builder: (context, value, child) {
+                          return TextFormField(
+                            controller: confirmController,
+                            obscureText: !iconVisibilityProvider.isVisible,
+                            keyboardType: TextInputType.visiblePassword,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Password Required';
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'Password',
+                              prefixIcon: const Icon(
+                                Icons.lock,
+                                color: Color(0xff088F8F),
+                              ),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  iconVisibilityProvider.toggleVisibility();
+                                },
+                                icon: Icon(
+                                  iconVisibilityProvider.isVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
+                                color: Colors.teal,
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide:
+                                    const BorderSide(color: Color(0xff6495ED)),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              hintText: 'Password',
+                            ),
+                          );
                         },
-                        decoration: InputDecoration(
-                          labelText: 'Confirm Password',
-                          prefixIcon: const Icon(
-                            Icons.lock,
-                            color: Color(0xff088F8F),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide:
-                                  const BorderSide(color: Color(0xff6495ED))),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          hintText: 'Confirm Password',
-                        ),
                       ),
-                      CheckboxListTile(
-                        //checkbox positioned at left
-                        value: check,
-                        activeColor: Colors.blue,
-                        checkColor: Colors.white,
-                        controlAffinity: ListTileControlAffinity.leading,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            check = value;
-                          });
+                      Consumer<CheckboxProvider>(
+                        builder: (context, providerValue, _) {
+                          return CheckboxListTile(
+                            value: providerValue.isChecked,
+                            activeColor: Colors.blue,
+                            checkColor: Colors.white,
+                            controlAffinity: ListTileControlAffinity.leading,
+                            onChanged: (bool? value) {
+                              providerValue.toggleCheckbox();
+                            },
+                            title: const Text("I agree with Terms and Privacy"),
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 0.0),
+                          );
                         },
-                        title: const Text("I agree with Terms and Privacy"),
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 0.0),
                       ),
                       const SizedBox(
                         height: 50,

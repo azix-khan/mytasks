@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mytasks/Screens/welcome_screen.dart';
+import 'package:mytasks/provider/checkbox_provider.dart';
 import 'package:mytasks/provider/visibility_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => IconVisibilityProvider()),
+        ChangeNotifierProvider(create: (_) => CheckboxProvider()),
       ],
       child: Builder(builder: (BuildContext context) {
         return MaterialApp(
