@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mytasks/Screens/welcome_screen.dart';
 import 'package:mytasks/provider/checkbox_provider.dart';
 import 'package:mytasks/provider/theme_changer_provider.dart';
@@ -14,6 +15,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => IconVisibilityProvider()),
