@@ -6,7 +6,13 @@ import 'package:mytasks/provider/theme_changer_provider.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  List<String> images = [
+    "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+    "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+    "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+    "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png"
+  ];
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,18 +51,26 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Stack(
         children: <Widget>[
-          customContainer('Home', context),
-          const Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'Internee.pk',
-                  style: TextStyle(fontSize: 50, color: Colors.teal),
-                )
-              ],
-            ),
+          customContainer('', context),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Container(
+                    padding: EdgeInsets.all(12.0),
+                    child: GridView.builder(
+                      itemCount: images.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 4.0,
+                          mainAxisSpacing: 4.0),
+                      itemBuilder: (BuildContext context, int index) {
+                        return Image.network(images[index]);
+                      },
+                    )),
+              ),
+            ],
           )
         ],
       ),
