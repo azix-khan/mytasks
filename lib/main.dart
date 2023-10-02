@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
       child: Builder(builder: (BuildContext context) {
         final themeChanger = Provider.of<ThemeChangerProvider>(context);
         return MaterialApp(
-          title: 'Flutter Demo',
           themeMode: themeChanger.themeMode,
           theme: ThemeData(
             brightness: Brightness.light,

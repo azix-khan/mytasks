@@ -21,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final iconVisibilityProvider = Provider.of<IconVisibilityProvider>(context);
+    print('build');
 
     return Scaffold(
       body: Stack(
