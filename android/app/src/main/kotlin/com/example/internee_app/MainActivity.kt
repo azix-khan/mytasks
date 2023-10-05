@@ -1,4 +1,4 @@
-package com.example.internee_app
+package com.example.mytasks
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

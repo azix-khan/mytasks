@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mytasks/Screens/welcome_screen.dart';
@@ -6,7 +7,9 @@ import 'package:mytasks/provider/theme_changer_provider.dart';
 import 'package:mytasks/provider/visibility_provider.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

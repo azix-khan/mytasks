@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:local_auth/local_auth.dart';
 import 'package:mytasks/Screens/welcome_screen.dart';
 import 'package:mytasks/Utils/custom_container.dart';
 import 'package:mytasks/Utils/custom_drawer.dart';
@@ -11,29 +9,10 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  late final LocalAuthentication auth;
-  bool _supportState = false;
-
-  @override
-  void initState() {
-    super.initState();
-    auth = LocalAuthentication();
-    _checkBiometricSupport();
-  }
-
-  Future<void> _checkBiometricSupport() async {
-    bool isSupported = await auth.isDeviceSupported();
-    if (mounted) {
-      setState(() {
-        _supportState = isSupported;
-      });
-    }
-  }
-
+class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final themeChanger = Provider.of<ThemeChangerProvider>(context);
@@ -73,50 +52,13 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: <Widget>[
           customContainer('', context),
-          Column(
+          const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              if (_supportState)
-                const Text('This device is supported')
-              else
-                const Text('This device is not supported'),
-              const Divider(
-                height: 100,
-              ),
-              ElevatedButton(
-                  onPressed: _getAvailableBiometrics,
-                  child: Text('Get Available biometrics')),
-              const Divider(
-                height: 100,
-              ),
-              ElevatedButton(
-                  onPressed: _authenticate, child: Text('Authenticate')),
-            ],
+            children: [Center(child: Text('Hello'))],
           ),
         ],
       ),
     );
-  }
-
-  Future<void> _authenticate() async {
-    try {
-      bool authenticated = await auth.authenticate(
-        localizedReason: 'Authenticate to continue',
-        options: const AuthenticationOptions(
-          biometricOnly: false,
-          stickyAuth: true,
-        ),
-      );
-      print('Authenticated: $authenticated');
-    } on PlatformException catch (e) {
-      print(e);
-    }
-  }
-
-  Future<void> _getAvailableBiometrics() async {
-    List<BiometricType> availableBiometrics =
-        await auth.getAvailableBiometrics();
-    print('List of available biometrics $availableBiometrics');
   }
 }
