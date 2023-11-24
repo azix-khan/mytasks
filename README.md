@@ -47,7 +47,7 @@ To get started with MyTask, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/mytask.git
+   git clone https://github.com/azix-khan/mytask.git
    ```
 
 2. Install dependencies:
@@ -77,4 +77,4 @@ Feel free to contribute, report issues, or provide feedback. Happy coding! 🚀
 
 ## License
 
-This project is licensed under the azix company - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the [azix company](license) - see the [LICENSE.md](LICENSE.md) file for details.
